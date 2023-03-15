@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amazon Stock Price</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Valeur d'Amazon ({{ data.symbol }}) en temps réel</h1>
+    <p>Prix de clôture: <span id="price">{{ data.price }}</span></p>
+
+    <script>
+      function updateAmazonPrice() {
+        $.getJSON('/amazon_stock_price', function(data) {
+          $('#price').text(data.price);
+        });
+      }
+
+      setInterval(updateAmazonPrice, 2000); #affiche toutes les 5 sec
+    </script>
+  </body>
+</html>
