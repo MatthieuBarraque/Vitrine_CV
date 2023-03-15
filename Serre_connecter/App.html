@@ -1,0 +1,59 @@
+
+<html>
+
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controle de la serre</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+  
+  <body>
+  <h1></a>Control App </h1>
+  
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Legume')">Legume</button>
+    <button class="tablinks" onclick="openTab(event, 'Statistique')">Statistique</button>
+    <button class="tablinks" onclick="openTab(event, 'Meteo')"> Meteo</button>
+    
+  </div>
+  
+  <div id="Legume" class="tabcontent">
+  <p><h2><a>&#129367</a> Laitue </p><a class="button button-unk">=_=</a></h2>
+  <p><h2><a>&#129364</a> Pomme de Terre </p><a class="button button-unk">=_=</a></h2>
+  <p><h2><a>&#129365</a> Carrotte</p><a class="button button-on">=_=</a></h2>
+  <p><h2><a>&#x1F952</a> Concombre</p><a class="button button-unk">=_=</a></h2>
+  <p><h2><a>&#x1F96C</a> épinard</p><a class="button button-off">=_=</a></h2>
+  <p><h2><a>&#x1F966</a> Broccoli</p><a class="button button-unk">=_=</a></h2>
+  <p><h2><a>&#x1F346</a> Aubergine</p><a class="button button-unk">=_=</a></h2>
+  <p><h2><a class="button button-res" href="/restart">Reset</a></h2>
+  0 reconnexions
+  </div>
+  
+  <div id="Statistique" class="tabcontent">
+    <h3>Statistique</h3>
+    <p></p> 
+  </div>
+  
+  <div id="Meteo" class="tabcontent">
+    <h3>Meteo</h3>
+    <iframe id="widget_autocomplete_preview"  width="200" height="350" frameborder="0" src="https://meteofrance.com/widget/prevision/751070"> </iframe>
+  </div>
+  
+  <script>
+  function openTab(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  </script>
+     
+  </body>
+  </html>
