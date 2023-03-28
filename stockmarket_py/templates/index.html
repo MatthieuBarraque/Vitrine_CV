@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Vitrine Github</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #007BFF;
+        padding: 1rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      header h1 {
+        color: white;
+        margin: 0;
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+
+      nav li {
+        margin: 0 10px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        display: inline-block;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      footer {
+        background-color: #f2f2f2;
+        padding: 1rem;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>Demo Vitrine-Github</h1>
+        <ul>
+          <li><a href="#">Ceci</a></li>
+          <li><a href="#">Est</a></li>
+          <li><a href="#">un</a></li>
+          <li><a href="#">exemple</a></li>
+          <li><a href="#">Github</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container mt-5">
+      <h2>Valeurs des actions :</h2>
+      <table class="table table-striped" id="stock-table">
+        <thead>
+          <tr>
+            <th scope="col">Symbole</th>
+            <th scope="col">Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticker, stock_data in data.items() %}
+            <tr id="{{ ticker }}">
+              <td>{{ ticker }}</td>
+              <td>{{ stock_data.price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+    <script>
+      function updateStockData() {
+        {% for ticker in data.keys() %}
+          $.getJSON('/stock_data/{{ ticker }}', function(data) {
+            const tableRow = document.getElementById('{{ ticker }}');
+            tableRow.innerHTML = '<td>' + data.symbol + '</td><td>' + data.price + '</td>';
+          });
+        {% endfor %}
+      }
+
+      setInterval(updateStockData, 10000); // rafraîchir les données toutes les 5 secondes
+    </script>
+    <footer>
+      <p>&copy; 2023 Matthieu Barraque. Vitrine Github.</p>
+    </footer>
+  </body>
+</html>
+
+
+
